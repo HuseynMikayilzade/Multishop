@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MultiShop.DAL;
+using MultiShop.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("mssql"));
 });
+builder.Services.AddScoped<LayoutService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

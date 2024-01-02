@@ -19,5 +19,6 @@ namespace MultiShop.DAL
         public DbSet<SpecialProduct> SpecialProducts { get; set; }
         public DbSet<CustomService> CustomServices { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Setting> Settings { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace MultiShop.ViewModels
         public List<CustomService>? CustomServices { get; set; }
         public List<Category>? Categories { get; set; }
         public List<Product>? Products { get; set; }
+     
     }
 }

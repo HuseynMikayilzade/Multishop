@@ -23,18 +23,19 @@ namespace MultiShop.Controllers
             List<Category> categories = await _context.Categories.Include(c=>c.Product).ToListAsync();
             List<Product> products = await _context.Products
                 .Include(p=>p.Images)
-                .Include(p=>p.Category)
-                .Include(p=>p.ProductColors).ThenInclude(pc=>pc.Color)
-                .Include(p=>p.ProductSizes).ThenInclude(pc=>pc.size)
+                //.Include(p=>p.Category)
+                //.Include(p=>p.ProductColors).ThenInclude(pc=>pc.Color)
+                //.Include(p=>p.ProductSizes).ThenInclude(pc=>pc.size)
                 .ToListAsync();
-            
+           
             HomeVm vm = new HomeVm
             {
                 Slides = slides,
                 SpecialProducts = specialProducts,
                 CustomServices = customServices,
                 Categories = categories,
-                Products = products
+                Products = products,
+                
             };
             return View(vm);
         }
