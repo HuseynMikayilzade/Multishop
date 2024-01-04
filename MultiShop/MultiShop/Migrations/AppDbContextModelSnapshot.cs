@@ -149,10 +149,7 @@ namespace MultiShop.Migrations
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PorductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -317,7 +314,9 @@ namespace MultiShop.Migrations
 
                     b.HasOne("MultiShop.Models.Product", "Product")
                         .WithMany("ProductColors")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Color");
 
