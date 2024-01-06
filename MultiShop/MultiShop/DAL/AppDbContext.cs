@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MultiShop.Models;
 
 namespace MultiShop.DAL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext :IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -20,5 +22,6 @@ namespace MultiShop.DAL
         public DbSet<CustomService> CustomServices { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Setting> Settings { get; set; }
+
     }
 }

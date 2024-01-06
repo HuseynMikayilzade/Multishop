@@ -1,0 +1,84 @@
+﻿
+@model UpdateProductVm
+
+<div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Product</h4>
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name">Name</label>
+                    <input asp-for="Name" type="text" class="form-control" id="exampleInputUsername1" placeholder="Name">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Photo">photo</label>
+                    <img style="width:150px;height:150px" src="~/assets/img/@Model.Images.FirstOrDefault(i=>i.isPrimary==true)?.Url"></img>
+                </div>
+                @foreach (var item in Model.Images.Where(pi => pi.isPrimary == false))
+                {
+                    <div class="position-relative">
+                        <img style="width:150px;heigth:150px" src="~/assets/img/@item.Url"/>
+                        <input asp-for="ImageIds" type="hidden" value="@item.Id">
+                       
+                    </div>
+                }
+                <div class="form-group">
+                    <label asp-for="Photo">Image</label>
+                    <input asp-for="Photo" class="form-control" placeholder="Photo">
+                    <span asp-validation-for="Photo"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AdditionalPhotos">Image</label>
+                    <input asp-for="AdditionalPhotos" class="form-control" placeholder="Photo">
+                    <span asp-validation-for="AdditionalPhotos"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price">Price</label>
+                    <input asp-for="Price" class="form-control" placeholder="Price">
+                    <span asp-validation-for="Price"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CostPrice">Cost price</label>
+                    <input asp-for="CostPrice" class="form-control" placeholder="CostPrice">
+                    <span asp-validation-for="CostPrice"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount">Discount</label>
+                    <input asp-for="Discount" class="form-control" placeholder="Discount">
+                    <span asp-validation-for="Discount"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input asp-for="Description" class="form-control" placeholder="Description">
+                    <span asp-validation-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId">Category</label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="new SelectList(Model.Categories,nameof(Category.Id),nameof(Category.Name))">
+                        <option disabled>Choose category</option>
+                    </select>
+                    <span asp-validation-for="CategoryId"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ColorIds">Colors</label>
+                    <select asp-for="ColorIds" class="form-control" asp-items="new SelectList(Model.Colors,nameof(Color.Id),nameof(Color.Name))">
+                        <option disabled>Choose Color</option>
+                    </select>
+                    <span asp-validation-for="ColorIds"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SizeIds">Sizes</label>
+                    <select asp-for="SizeIds" class="form-control" asp-items="new SelectList(Model.Sizes,nameof(Size.Id),nameof(Size.Name))">
+                        <option disabled>Choose Size</option>
+                    </select>
+                    <span asp-validation-for="SizeIds"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button class="btn btn-light"><a asp-action="index" asp-controller="product">Cancel</a></button>
+
+            </form>
+        </div>
+    </div>
+</div>

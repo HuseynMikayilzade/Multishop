@@ -1,0 +1,68 @@
+﻿@model DetailVm<Product>
+@{
+    int count = 0;
+}
+
+<div class="container-fluid">
+
+    <div class="card">
+        <div class="row text-center pt-5">
+            <div class="col-3">
+                <img style="width:250px;height:200px" src="~/assets/img/@Model.Item.Images.FirstOrDefault(p=>p.isPrimary==true)?.Url" class="card-img-top" alt="...">
+                <h5>Primary</h5>
+            </div>
+            <div class=" col-6">
+                @foreach (var item in Model.Item.Images)
+                {
+                    <img style="width:250px;height:200px" src="~/assets/img/@Model.Item.Images.FirstOrDefault(p=>p.isPrimary==false)?.Url" class="card-img-top" alt="...">
+
+                }
+                <h5>Others</h5>
+            </div>
+
+
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Name: @Model.Item.Name</h5>
+            <p class="card-text">Description: @Model.Item.Description</p>
+        </div>
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+                Colors:
+                <div class="d-flex ml-3">
+                    @foreach (var item in Model.Item.ProductColors)
+                    {
+                        count++;
+                        <p>@item.Color.Name @(count < Model.Item.ProductColors.Count ? "," : "")</p>
+
+                    }
+                </div>
+
+            </li>
+            <li class="list-group-item">
+                Sizes:
+                <div class="d-flex ml-3">
+                    @{
+                        count = 0;
+                    }
+                    @foreach (var item in Model.Item.ProductSizes)
+                    {
+                        count++;
+                        <p>@item.size.Name @(count < Model.Item.ProductSizes.Count ? "," : "")</p>
+
+                    }
+                </div>
+
+            </li>
+
+
+            <li class="list-group-item">Price: @Model.Item.Price</li>
+            <li class="list-group-item">CostPrice: @Model.Item.CostPrice</li>
+            <li class="list-group-item">Discount: @Model.Item.Discount</li>
+        </ul>
+        <div class="card-body">
+            <button class="btn btn-light"><a asp-action="index" asp-controller="product" class="card-link">Back</a></button>
+        </div>
+    </div>
+</div>

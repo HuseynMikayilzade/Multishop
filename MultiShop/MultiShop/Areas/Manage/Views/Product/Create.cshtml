@@ -3,10 +3,8 @@
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Default form</h4>
-            <p class="card-description">
-                Basic form layout
-            </p>
+            <h4 class="card-title">Create Product</h4>
+           
             <form class="forms-sample" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label asp-for="Name">Name</label>
@@ -14,12 +12,12 @@
                     <span asp-validation-for="Name"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Photo">Image</label>
+                    <label asp-for="Photo">Photo</label>
                     <input asp-for="Photo" class="form-control" placeholder="Photo">
                     <span asp-validation-for="Photo"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="AdditionalPhotos">Image</label>
+                    <label asp-for="AdditionalPhotos">Additional photo</label>
                     <input asp-for="AdditionalPhotos" class="form-control" placeholder="Photo">
                     <span asp-validation-for="AdditionalPhotos"></span>
                 </div>
@@ -66,7 +64,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
-                <button class="btn btn-light"><a asp-action="index" asp-controller="slide">Cancel</a></button>
+                <button class="btn btn-light"><a asp-action="index" asp-controller="product">Cancel</a></button>
 
             </form>
         </div>
