@@ -25,12 +25,12 @@ namespace MultiShop.Areas.Manage.Controllers
         {
             if (page <= 0) return BadRequest();
             double count = await _context.Categories.CountAsync();
-            if(count<=0) return NotFound();
+            if(count<0) return NotFound();
             double totalpage = Math.Ceiling(count / 5);
-            if (page > totalpage) return BadRequest();
 
 
             List<Category> categories = await _context.Categories.Skip((page-1)*5).Take(5).ToListAsync();
+            //List<Category> categories = await _context.Categories.ToListAsync();
             if(categories==null) return NotFound();
 
             PaginationVm<Category> vm = new PaginationVm<Category>

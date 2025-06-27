@@ -16,15 +16,12 @@ namespace MultiShop.Areas.Manage.Controllers
             _context = context;
         }
         public async Task<IActionResult> Index(int page=1)
-        {
-            
+        {            
             if (page <= 0) return BadRequest();
-
-
             double count = await _context.Settings.CountAsync();
-            if (count <= 0) return NotFound();
+            if (count <0 ) return NotFound();
+
             double totalpage = Math.Ceiling((double)count / 5);
-            if (page > totalpage) return BadRequest();
             List<Setting> settings = await _context.Settings.ToListAsync(); //skip , take duzgun islemir tamamlayacam (countu duzgun gelmir deye)//
             PaginationVm<Setting> vm = new PaginationVm<Setting>
             {

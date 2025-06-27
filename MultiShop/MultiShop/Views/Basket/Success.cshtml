@@ -1,0 +1,17 @@
+﻿@model SuccesVm
+
+<div class="container mt-5">
+    <div class="alert alert-success text-center rounded-4 shadow-sm p-5">
+        <h2 class="mb-3">✅ Woow!</h2>
+        <p class="fs-5">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert alert-success">
+                    @Model.Message
+                </div>
+            }
+        </p>
+        <a href="/" class="btn btn-outline-danger mt-4">Back to Home</a>
+        <a href="@Model.ReturnUrl" class="btn btn-primary mt-4">Back to Previous Page</a>
+    </div>
+</div>

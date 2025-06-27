@@ -1,0 +1,201 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\controllers\\basketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\controllers\\basketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\viewmodels\\ordervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\viewmodels\\ordervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\views\\basket\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\views\\basket\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\views\\basket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\views\\basket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\viewmodels\\basketcookieitemvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\viewmodels\\basketcookieitemvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\controllers\\wishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\controllers\\wishcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|c:\\users\\user\\desktop\\multishop\\multishop\\multishop\\wwwroot\\assets\\js\\custom.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7E750D18-1EF5-4248-8C89-D0CDA121AEFE}|MultiShop\\MultiShop.csproj|solutionrelative:multishop\\wwwroot\\assets\\js\\custom.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderVm.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\ViewModels\\OrderVm.cs",
+              "RelativeDocumentMoniker": "MultiShop\\ViewModels\\OrderVm.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\ViewModels\\OrderVm.cs",
+              "RelativeToolTip": "MultiShop\\ViewModels\\OrderVm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T14:15:33.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CheckOut.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Views\\Basket\\CheckOut.cshtml",
+              "RelativeDocumentMoniker": "MultiShop\\Views\\Basket\\CheckOut.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Views\\Basket\\CheckOut.cshtml",
+              "RelativeToolTip": "MultiShop\\Views\\Basket\\CheckOut.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-27T14:12:02.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WishController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\WishController.cs",
+              "RelativeDocumentMoniker": "MultiShop\\Controllers\\WishController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\WishController.cs",
+              "RelativeToolTip": "MultiShop\\Controllers\\WishController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T13:17:05.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "MultiShop\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "MultiShop\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAcwJ8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T12:50:24.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "MultiShop\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "MultiShop\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAADwv4QAAACEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T12:01:03.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BasketCookieItemVm.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\ViewModels\\BasketCookieItemVm.cs",
+              "RelativeDocumentMoniker": "MultiShop\\ViewModels\\BasketCookieItemVm.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\ViewModels\\BasketCookieItemVm.cs",
+              "RelativeToolTip": "MultiShop\\ViewModels\\BasketCookieItemVm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T12:00:25.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BasketController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\BasketController.cs",
+              "RelativeDocumentMoniker": "MultiShop\\Controllers\\BasketController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Controllers\\BasketController.cs",
+              "RelativeToolTip": "MultiShop\\Controllers\\BasketController.cs",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAYwBUBAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T10:59:04.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Views\\Basket\\Index.cshtml",
+              "RelativeDocumentMoniker": "MultiShop\\Views\\Basket\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\Views\\Basket\\Index.cshtml",
+              "RelativeToolTip": "MultiShop\\Views\\Basket\\Index.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-27T10:55:54.072Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Custom.js",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\wwwroot\\assets\\js\\Custom.js",
+              "RelativeDocumentMoniker": "MultiShop\\wwwroot\\assets\\js\\Custom.js",
+              "ToolTip": "C:\\Users\\User\\Desktop\\multishop\\MultiShop\\MultiShop\\wwwroot\\assets\\js\\Custom.js",
+              "RelativeToolTip": "MultiShop\\wwwroot\\assets\\js\\Custom.js",
+              "ViewState": "AgIAAGMAAAAAAAAAAADwv3MAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-27T10:56:04.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

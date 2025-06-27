@@ -7,7 +7,8 @@
         public decimal TotalPrice { get; set; }
         public string?  Status { get; set; }
         public List<BasketItem> BasketItems { get; set; }
-        public List<AppUser> AppUser { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
         public DateTime Received { get; set; }
     }
 }

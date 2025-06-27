@@ -22,6 +22,10 @@ namespace MultiShop.DAL
         public DbSet<CustomService> CustomServices { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Setting> Settings { get; set; }
-
+        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
+        public DbSet<CouponUsage> CouponsUsages { get; set; } 
+        public DbSet<WishListItem> WishListItems { get; set; }
     }
 }

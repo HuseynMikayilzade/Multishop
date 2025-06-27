@@ -26,11 +26,11 @@ namespace MultiShop.Areas.Manage.Controllers
         {
             if (page <= 0) return BadRequest();
             double count = await _context.Products.CountAsync();
-            if (count <= 0) return NotFound();
+            if (count < 0) return NotFound();
             double totalpage = Math.Ceiling((double)count / 5);
-            if (page > totalpage) return BadRequest();
 
             List<Product> products = await _context.Products.Skip((page-1)*5).Take(5).Include(p => p.Images).ToListAsync();
+           // List<Product> products = await _context.Products.ToListAsync();
             if (products == null) return NotFound();
             PaginationVm<Product> vm = new PaginationVm<Product>
             {
@@ -349,6 +349,23 @@ namespace MultiShop.Areas.Manage.Controllers
                 Item = product
             };
             return View(vm);
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest();
+            Product exist = _context.Products.FirstOrDefault(s => s.Id == id);
+            if (exist == null) return NotFound();
+            if (exist.Images!=null)
+            {
+                foreach (var item in exist.Images)
+                {
+                    item.Url.DeleteFile(_env.WebRootPath, "assets", "img");
+                    exist.Images.Remove(item);
+                }
+            }
+            _context.Products.Remove(exist);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

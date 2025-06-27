@@ -2,56 +2,99 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-10 bg-light shadow-sm p-4 rounded-3">
+            <h4 class="text-center mb-4 text-dark">Create Your Account</h4>
             <form method="post">
-                <div asp-validation-summary="ModelOnly"></div>
-                <div class="form-group">
-                    <label asp-for="Name">Name</label>
-                    <input asp-for="Name" class="form-control" placeholder="Name">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Surname">Surname</label>
-                    <input asp-for="Surname" class="form-control" placeholder="Surname">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Username">Username</label>
-                    <input asp-for="Username" class="form-control" placeholder="Enter email">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email">Email address</label>
-                    <input asp-for="Email" class="form-control" placeholder="Enter email">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Gender">Gender</label>
-                    @foreach (var gender in Enum.GetValues(typeof(Gender)))
-                    {
-                        <div class="d-flex form-check">
-                            <input asp-for="Gender" style="width:20px;height:20px" class="form-check-input" type="radio" value="@gender" id="@gender" />
-                            <label asp-for="Gender" class="form-check-label" for="@gender"> @gender</label>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row">
+                    <!-- Sol sütun -->
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input asp-for="Name" class="form-control" placeholder="Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
-                    }
-                    
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Username" class="form-label">Username</label>
+                            <input asp-for="Username" class="form-control" placeholder="Username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label">Email address</label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Gender" class="form-label d-block">Gender</label>
+                            <div class="d-flex justify-content-center gap-4">
+                                @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                                {
+                                    <div class="form-check form-check-inline">
+                                        <input asp-for="Gender" class="form-check-input" type="radio" value="@gender" id="@gender" />
+                                        <label class="form-check-label" for="@gender">@gender</label>
+                                    </div>
+                                }
+                            </div>
+                            <span asp-validation-for="Gender" class="text-danger d-block mt-1"></span>
+                        </div>                       
+                    </div>
+
+                    <!-- Sağ sütun -->
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Surname" class="form-label">Surname</label>
+                            <input asp-for="Surname" class="form-control" placeholder="Surname" />
+                            <span asp-validation-for="Surname" class="text-danger"></span>
+                        </div>
+
+                       
+                        <div class="form-group mb-3 position-relative">
+                            <label asp-for="Password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input asp-for="Password" class="form-control" placeholder="Password" type="password" id="registerPassword" />
+                                <button type="button" class="btn btn-outline-secondary" id="toggleRegisterPassword" tabindex="-1">
+                                    <i class="fa fa-eye" id="registerEyeIcon"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3 position-relative">
+                            <label asp-for="Confirmpassword" class="form-label">Confirm password</label>
+                            <div class="input-group">
+                                <input asp-for="Confirmpassword" class="form-control" placeholder="Confirm password" type="password" id="confirmPassword" />
+                                <button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword" tabindex="-1">
+                                    <i class="fa fa-eye" id="confirmEyeIcon"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Confirmpassword" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password">Password</label>
-                    <input asp-for="Password" class="form-control"  placeholder="Password">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Confirmpassword">Confirm password</label>
-                    <input asp-for="Confirmpassword" class="form-control" placeholder="Confirm password">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>            
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+
+
+                <button type="submit" class="btn btn-warning w-100 text-dark fw-semibold">Register</button>
             </form>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("toggleRegisterPassword").addEventListener("click", function () {
+        const input = document.getElementById("registerPassword");
+        const icon = document.getElementById("registerEyeIcon");
+        input.type = input.type === "password" ? "text" : "password";
+        icon.classList.toggle("fa-eye");
+        icon.classList.toggle("fa-eye-slash");
+    });
+
+    document.getElementById("toggleConfirmPassword").addEventListener("click", function () {
+        const input = document.getElementById("confirmPassword");
+        const icon = document.getElementById("confirmEyeIcon");
+        input.type = input.type === "password" ? "text" : "password";
+        icon.classList.toggle("fa-eye");
+        icon.classList.toggle("fa-eye-slash");
+    });
+</script>

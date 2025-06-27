@@ -19,11 +19,12 @@ namespace MultiShop.Areas.Manage.Controllers
         {
             if (page <= 0) return BadRequest();
             double count = await _context.Colors.CountAsync();
-            if (count <= 0) return NotFound();
+            if (count < 0) return NotFound();
             double totalpage = Math.Ceiling(count / 5);
-            if (page > totalpage) return BadRequest();
+            
 
             List<Color> colors=await _context.Colors.Skip((page - 1) * 5).Take(5).ToListAsync();
+           // List<Color> colors = await _context.Colors.ToListAsync();
             PaginationVm<Color> vm = new PaginationVm<Color>
             {
                 Items=colors,

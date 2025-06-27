@@ -1,4 +1,6 @@
-﻿namespace MultiShop.Areas.Manage.ViewModels
+﻿using MultiShop.Models;
+
+namespace MultiShop.Areas.Manage.ViewModels
 {
     public class PaginationVm<T> where T : class
     {
@@ -6,5 +8,6 @@
        
         public int CurrentPage { get; set; }
         public double TotalPage { get; set; }
+        public AppUser? User{ get; set; }
     }
 }

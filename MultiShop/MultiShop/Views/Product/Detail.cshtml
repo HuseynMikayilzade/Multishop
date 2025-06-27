@@ -66,67 +66,96 @@
                 <p class="mb-4">
                     @firstsentence
                 </p>
-                <div class="d-flex mb-3">
-                    <strong class="text-dark mr-3">Sizes:</strong>
-                    <form>
+                <form asp-controller="Product" asp-action="AddBasket" asp-route-id="@Model.Product.Id" asp-route-returnUrl="@Context.Request.Path" method="post" class="mb-4">
+
+                    <div class="d-flex mb-3 align-items-center">
+                        <strong class="text-dark mr-3">Sizes:</strong>
                         @foreach (var item in Model.Product.ProductSizes)
                         {
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">@item.size.Name</label>
+                                <input type="radio" class="custom-control-input" id="size-@item.size.Id" name="sizeId" value="@item.size.Id" required />
+                                <label class="custom-control-label" for="size-@item.size.Id">@item.size.Name</label>
                             </div>
                         }
-                    </form>
-                </div>
-                <div class="d-flex mb-4">
-                    <strong class="text-dark mr-3">Colors:</strong>
-                    <form>
+                    </div>
+
+                    <div class="d-flex mb-4 align-items-center">
+                        <strong class="text-dark mr-3">Colors:</strong>
                         @foreach (var item in Model.Product.ProductColors)
                         {
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">@item.Color.Name</label>
+                                <input type="radio" class="custom-control-input" id="color-@item.Color.Id" name="colorId" value="@item.Color.Id" required />
+                                <label class="custom-control-label" for="color-@item.Color.Id">@item.Color.Name</label>
                             </div>
                         }
+                    </div>
 
-                    </form>
-                </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <strong class="text-dark mr-3">Count:</strong>
+                        <div class="input-group count mr-3" style="width: 160px;">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-sm btn-dark btn-decr">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="number" name="count" min="1" value="1" class="form-control form-control-sm bg-secondary border-0 text-center count-input" required />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-sm btn-primary btn-incr">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                        <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
+
+                        <button type="submit" class="btn btn-sm btn-primary d-flex align-items-center px-3">
+                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
-                    <button class="btn btn-primary px-3">
-                        <i class="fa fa-shopping-cart mr-1"></i> Add To
-                        Cart
-                    </button>
-                </div>
+                </form>
+
                 <div class="d-flex pt-2">
-                    <strong class="text-dark mr-2">Share on:</strong>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
+                    <strong class="text-dark mr-2">Link:</strong>
+                    <div class="d-inline-flex align-items-center">
+                        <input type="text" id="copyLinkInput" class="form-control form-control-sm mr-2"
+                               style="width: 300px;" readonly value="@Context.Request.Scheme://@Context.Request.Host@Context.Request.Path" />
+                        <button class="btn btn-sm btn-primary" onclick="copyLink()">
+                            <i class="fa fa-copy"></i> Copy
+                        </button>
                     </div>
                 </div>
+
+
+                <!-- Kreativ Modal -->
+                <div class="modal fade" id="copyModal" tabindex="-1" aria-labelledby="copyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                            <div class="modal-header bg-success text-white" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                                <h5 class="modal-title d-flex align-items-center" id="copyModalLabel">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; margin-right: 10px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
+                                        <circle cx="12" cy="12" r="10" stroke="white"></circle>
+                                        <path d="M9 12l2 2 4-4" stroke="white"></path>
+                                    </svg>
+                                    Uğurlu!
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Bağla"></button>
+                            </div>
+                            <div class="modal-body text-center" style="font-size: 1.1rem;">
+                                Link uğurla kopyalandı!
+                            </div>
+
+                            <!-- Progress bar -->
+                            <div class="progress" style="height: 5px; border-radius: 0 0 15px 15px; overflow: hidden;">
+                                <div id="copyProgressBar" class="progress-bar bg-light" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-success px-4" data-bs-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </div>
@@ -243,3 +272,64 @@
 @await Html.PartialAsync("_RelatedPartialView",Model)
 
 <!-- Products End -->
+<script>
+    function copyLink() {
+        var copyText = document.getElementById("copyLinkInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // mobil dəstək üçün
+        document.execCommand("copy");
+
+        var copyModalEl = document.getElementById('copyModal');
+        var copyModal = new bootstrap.Modal(copyModalEl);
+
+        // Progress bar elementi
+        var progressBar = document.getElementById('copyProgressBar');
+        progressBar.style.width = '100%';
+        progressBar.setAttribute('aria-valuenow', 100);
+
+        copyModal.show();
+
+        // Progress barın tədricən azalması üçün interval
+        var duration = 3000; // 3 saniyə
+        var intervalTime = 50; // hər 50 ms-də yenilənəcək
+        var steps = duration / intervalTime;
+        var width = 100;
+        var decrement = 100 / steps;
+
+        var interval = setInterval(() => {
+          width -= decrement;
+          if (width <= 0) {
+            width = 0;
+            clearInterval(interval);
+            copyModal.hide();
+          }
+          progressBar.style.width = width + '%';
+          progressBar.setAttribute('aria-valuenow', width);
+        }, intervalTime);
+    }
+        document.addEventListener('DOMContentLoaded', function () {
+        const minusBtn = document.querySelector('.btn-decr');
+        const plusBtn = document.querySelector('.btn-incr');
+        const input = document.querySelector('.count-input');
+
+        if (minusBtn && plusBtn && input) {
+            minusBtn.addEventListener('click', function () {
+                let value = parseInt(input.value) || 1;
+                let min = parseInt(input.min) || 1;
+                if (value > min) {
+                    input.value = value - 1;
+                }
+            });
+
+            plusBtn.addEventListener('click', function () {
+                let value = parseInt(input.value) || 1;
+                let max = parseInt(input.max) || Infinity;
+                if (value < max) {
+                    input.value = value + 1;
+                }
+            });
+        }
+    });
+</script>
+
+

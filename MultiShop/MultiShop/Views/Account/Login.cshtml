@@ -1,29 +1,51 @@
 ﻿@model LoginVm 
-
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6 bg-light shadow-sm p-4 rounded-3">
+            <h4 class="mb-4 text-center text-dark">Sign In to Your Account</h4>
             <form method="post">
-                <div asp-validation-summary="ModelOnly"></div>
-           
-                <div class="form-group">
-                    <label asp-for="UserNameOrEmail">Username or email</label>
-                    <input asp-for="UserNameOrEmail" class="form-control" placeholder="Enter username or email">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="UserNameOrEmail" class="form-label">Username or Email</label>
+                    <input asp-for="UserNameOrEmail" class="form-control" placeholder="Enter username or email" />
                     <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
                 </div>
-                           
-                <div class="form-group">
-                    <label asp-for="Password">Password</label>
-                    <input asp-for="Password" class="form-control" placeholder="Password">
+
+                <div class="form-group mb-3 position-relative">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input asp-for="Password" class="form-control" placeholder="Password" type="password" id="passwordInput" />
+                        <button type="button" class="btn btn-outline-behance" id="togglePassword" tabindex="-1">
+                            <i class="fa fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-               
-                <div class="form-check">
-                    <input asp-for="Isremembered" class="form-check-input" >
-                    <label asp-for="Isremembered" class="form-check-label" >remember me</label>
+
+                <div class="form-check mb-3">
+                    <input asp-for="Isremembered" class="form-check-input" id="rememberMeCheckbox" />
+                    <label asp-for="Isremembered" class="form-check-label" for="rememberMeCheckbox">Remember me</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+
+                <button type="submit" class="btn btn-warning w-100 text-dark fw-semibold">Login</button>
             </form>
+
+            <!-- Əlavə bağlantılar -->
+            <div class="d-flex justify-content-between mt-3">
+                <a asp-action="ForgotPassword" asp-controller="Account" class="text-decoration-none text-warning">Şifrəni unutdun?</a>
+                <a asp-action="Register" asp-controller="Account" class="text-decoration-none text-warning">Hesabın yoxdur? Qeydiyyatdan keç</a>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        const passwordInput = document.getElementById("passwordInput");
+        const eyeIcon = document.getElementById("eyeIcon");
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        eyeIcon.classList.toggle("fa-eye");
+        eyeIcon.classList.toggle("fa-eye-slash");
+    });
+</script>

@@ -19,11 +19,11 @@ namespace MultiShop.Areas.Manage.Controllers
         {
             if (page <= 0) return BadRequest();
             double count = await _context.Sizes.CountAsync();
-            if (count <= 0) return NotFound();
+            if (count < 0) return NotFound();
             double totalpage = Math.Ceiling(count / 5);
-            if (page > totalpage) return BadRequest();
 
             List<Size> sizes =await _context.Sizes.Skip((page-1)*5).Take(5).ToListAsync();
+            //List<Size> sizes = await _context.Sizes.ToListAsync();
             if(sizes == null) return NotFound();
 
             PaginationVm<Size> vm = new PaginationVm<Size>

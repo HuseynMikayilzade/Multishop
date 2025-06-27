@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@* @model AdminVm *@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,30 +21,12 @@
 </head>
 <body>
     <div class="container-scroller">
-        <div class="row p-0 m-0 proBanner" id="proBanner">
-            <div class="col-md-12 p-0 m-0">
-                <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
-                    <div class="ps-lg-1">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more with this template!</p>
-                            <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/?utm_source=organic&utm_medium=banner&utm_campaign=buynow_demo" target="_blank" class="btn me-2 buy-now-btn border-0">Get Pro</a>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a href="https://www.bootstrapdash.com/product/majestic-admin-pro/"><i class="mdi mdi-home me-3 text-white"></i></a>
-                        <button id="bannerClose" class="btn border-0 p-0">
-                            <i class="mdi mdi-close text-white me-0"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" href="index.html"><img src="~/manage/images/logo.svg" alt="logo" /></a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/manage/images/logo-mini.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index"><img src="~/manage/images/logo.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" asp-controller="Home" asp-action="Index"><img src="~/manage/images/logo-mini.svg" alt="logo" /></a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                         <span class="mdi mdi-sort-variant"></span>
                     </button>
@@ -159,17 +142,25 @@
                             </a>
                         </div>
                     </li>
+
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                            <img src="~/manage/images/faces/face5.jpg" alt="profile" />
-                            <span class="nav-profile-name">Louis Barnett</span>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="profileDropdown">
+                            @if (User?.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <span class="nav-profile-name">@User.Identity.Name</span>
+                            }
+                            else
+                            {
+                                <span class="nav-profile-name">Guest</span>
+                            }
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item">
                                 <i class="mdi mdi-settings text-primary"></i>
                                 Settings
                             </a>
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" asp-area="" asp-action="Logout" asp-controller="Account">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
                             </a>
@@ -185,62 +176,79 @@
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
+                <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="mdi mdi-home menu-icon"></i>
+                        <a class="nav-link d-flex align-items-center" asp-controller="Dashboard" asp-action="Index">
+                            <i class="mdi mdi-home menu-icon me-2"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
-                    </li>             
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="index" asp-controller="category">
-                            <i class="mdi mdi-brightness-1"></i>
-                            <span class="menu-title ">Category</span>
+                        <a class="nav-link d-flex align-items-center" asp-controller="Category" asp-action="Index">
+                            <i class="mdi mdi-format-list-bulleted menu-icon me-2"></i>
+                            <span class="menu-title">Category</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" asp-controller="Slide" asp-action="Index">
+                            <i class="mdi mdi-image-area menu-icon me-2"></i>
+                            <span class="menu-title">Slide</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" asp-controller="Product" asp-action="Index">
+                            <i class="mdi mdi-cube-outline menu-icon me-2"></i>
+                            <span class="menu-title">Product</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" asp-controller="Size" asp-action="Index">
+                            <i class="mdi mdi-format-size menu-icon me-2"></i>
+                            <span class="menu-title">Size</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" asp-controller="Color" asp-action="Index">
+                            <i class="mdi mdi-palette menu-icon me-2"></i>
+                            <span class="menu-title">Color</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="index" asp-controller="slide">
-                            <i class="mdi mdi-brightness-1"></i>
-                            <span class="menu-title ">Slide</span>
+                        <a class="nav-link d-flex align-items-center" asp-controller="Coupon" asp-action="Index">
+                            <i class="mdi mdi-sale menu-icon me-2"></i>
+                            <span class="menu-title">Coupon</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="index" asp-controller="product">
-                            <i class="mdi mdi-brightness-1"></i>
-                            <span class="menu-title ">Product</span>
+                        <a class="nav-link d-flex align-items-center" asp-controller="SpecialProduct" asp-action="Index">
+                            <i class="mdi mdi-star-circle menu-icon me-2"></i>
+                            <span class="menu-title">Special Products</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="index" asp-controller="size">
-                            <i class="mdi mdi-brightness-1"></i>
-                            <span class="menu-title ">Size</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="index" asp-controller="color">
-                            <i class="mdi mdi-brightness-1"></i>
-                            <span class="menu-title ">Color</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="index" asp-controller="setting">
-                            <i class="mdi mdi-brightness-1"></i>
-                            <span class="menu-title ">Settings</span>
+                        <a class="nav-link d-flex align-items-center" asp-controller="Setting" asp-action="Index">
+                            <i class="mdi mdi-settings menu-icon me-2"></i>
+                            <span class="menu-title">Settings</span>
                         </a>
                     </li>
                 </ul>
+
             </nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-            @RenderBody()
+                    @RenderBody()
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard  </a> templates</span>
                     </div>
                 </footer>
                 <!-- partial -->

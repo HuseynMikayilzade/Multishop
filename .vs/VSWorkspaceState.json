@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MultiShop",
+    "\\MultiShop\\MultiShop",
+    "\\MultiShop\\MultiShop\\Areas\\Manage",
+    "\\MultiShop\\MultiShop\\Areas\\Manage\\Views",
+    "\\MultiShop\\MultiShop\\Areas\\Manage\\Views\\Dashboard",
+    "\\MultiShop\\MultiShop\\Areas\\Manage\\Views\\Shared",
+    "\\MultiShop\\MultiShop\\wwwroot"
+  ],
+  "SelectedNode": "\\MultiShop\\MultiShop\\wwwroot\\manage",
+  "PreviewInSolutionExplorer": true
+}
