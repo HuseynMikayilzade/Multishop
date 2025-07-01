@@ -23,7 +23,7 @@ namespace MultiShop.Areas.Manage.Controllers
             double totalpage = Math.Ceiling(count / 5);
             
 
-            List<Color> colors=await _context.Colors.Skip((page - 1) * 5).Take(5).ToListAsync();
+            List<Color> colors=await _context.Colors.OrderByDescending(x => x.Id).Skip((page - 1) * 5).Take(5).ToListAsync();
            // List<Color> colors = await _context.Colors.ToListAsync();
             PaginationVm<Color> vm = new PaginationVm<Color>
             {

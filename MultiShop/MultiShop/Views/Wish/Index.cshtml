@@ -35,7 +35,12 @@
                                 <img src="~/assets/img/@item.Image" alt="@item.Name" style="width: 50px; height: 50px; object-fit: cover;">
                                 <span class="pl-2">@item.Name</span>
                             </td>
-                            <td class="align-middle">@item.Price $</td>
+                            <td class="align-middle">
+                                <div class="ml-4 align-items-center" style="line-height: 1.2;">
+                                    @item.SalePrice $
+                                    <div class="text-muted" style="font-size: 15px;"><del>@(item.Price != item.SalePrice ? item.Price : "")</del></div>
+                                </div>
+                            </td>
                             <td class="align-middle">
                                 <a href="/Product/Detail/@item.Id" class="btn btn-sm btn-info">
                                     <i class="fa fa-info-circle"></i> View

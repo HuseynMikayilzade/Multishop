@@ -21,7 +21,7 @@ namespace MultiShop.Areas.Manage.Controllers
             if (count < 0) return NotFound();
             double totalpage = Math.Ceiling(count / 5);
 
-            List<Coupon> coupons = await _context.Coupons.Skip((page - 1) * 5).Take(5).ToListAsync();
+            List<Coupon> coupons = await _context.Coupons.OrderByDescending(x => x.Id).Skip((page - 1) * 5).Take(5).ToListAsync();
             //List<Size> sizes = await _context.Sizes.ToListAsync();
             if (coupons == null) return NotFound();
 

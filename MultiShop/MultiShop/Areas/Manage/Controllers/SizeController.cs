@@ -22,7 +22,7 @@ namespace MultiShop.Areas.Manage.Controllers
             if (count < 0) return NotFound();
             double totalpage = Math.Ceiling(count / 5);
 
-            List<Size> sizes =await _context.Sizes.Skip((page-1)*5).Take(5).ToListAsync();
+            List<Size> sizes =await _context.Sizes.OrderByDescending(x => x.Id).Skip((page-1)*5).Take(5).ToListAsync();
             //List<Size> sizes = await _context.Sizes.ToListAsync();
             if(sizes == null) return NotFound();
 

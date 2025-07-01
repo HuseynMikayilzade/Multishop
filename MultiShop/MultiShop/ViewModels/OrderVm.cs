@@ -13,5 +13,6 @@ namespace MultiShop.ViewModels
         public decimal CouponDiscount { get; set; } = 0;
         public decimal Total { get; set; }
         public List<BasketItem>? BasketItems{ get; set; }
+        public string? Coupon { get; set; }
     }
 }

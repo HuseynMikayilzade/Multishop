@@ -29,8 +29,8 @@ namespace MultiShop.Areas.Manage.Controllers
             if (count < 0) return NotFound();
             double totalpage = Math.Ceiling((double)count / 5);
 
-            List<Product> products = await _context.Products.Skip((page-1)*5).Take(5).Include(p => p.Images).ToListAsync();
-           // List<Product> products = await _context.Products.ToListAsync();
+            List<Product> products = await _context.Products.OrderByDescending(x=>x.Id).Skip((page-1)*5).Take(5).Include(p => p.Images).ToListAsync();
+            // List<Product> products = await _context.Products.ToListAsync();
             if (products == null) return NotFound();
             PaginationVm<Product> vm = new PaginationVm<Product>
             {

@@ -8,7 +8,10 @@ wwwroot\assets\css\style.css
 wwwroot\assets\css\style.min.css
 wwwroot\assets\img\164fc48e-4116-4951-a06c-103a998794e6black_f.jpg
 wwwroot\assets\img\30aa1c61-246d-4cdf-a7b3-2183dee9f31d447983seyavsud.jpg
+wwwroot\assets\img\7ff23fca-df49-4272-9d5d-babc1e0ff2b9WhatsApp Image 2025-06-24 at 14.06.22 (2).jpeg
 wwwroot\assets\img\922428a3-55d8-4994-8e43-eae16162a4dc290417527_333655288969324_8020618734108173461_n.jpg
+wwwroot\assets\img\958fd20c-db47-47c6-a1cb-ad299c7f94bfimages (2).jpeg
+wwwroot\assets\img\96fe8606-924a-43e3-85d9-5ea432192aa5images (2).jpeg
 wwwroot\assets\img\a48662b7-b526-4c49-8833-bed6ff5b58cablack_f.jpg
 wwwroot\assets\img\aa7ca8f0-400b-4de7-872c-5d4c37b9076a290417527_333655288969324_8020618734108173461_n.jpg
 wwwroot\assets\img\carousel-1.jpg

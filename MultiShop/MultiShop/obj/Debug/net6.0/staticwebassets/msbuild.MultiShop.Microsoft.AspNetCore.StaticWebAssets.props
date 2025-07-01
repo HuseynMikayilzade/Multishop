@@ -216,6 +216,42 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\922428a3-55d8-4994-8e43-eae16162a4dc290417527_333655288969324_8020618734108173461_n.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\958fd20c-db47-47c6-a1cb-ad299c7f94bfimages (2).jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>MultiShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MultiShop</BasePath>
+      <RelativePath>assets/img/958fd20c-db47-47c6-a1cb-ad299c7f94bfimages (2).jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>lnc175hur9</Fingerprint>
+      <Integrity>r94r7+pD7r/7+Nfsofs3bPFQWfXTFnikJBcPTgbTv0g=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\958fd20c-db47-47c6-a1cb-ad299c7f94bfimages (2).jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\96fe8606-924a-43e3-85d9-5ea432192aa5images (2).jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>MultiShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MultiShop</BasePath>
+      <RelativePath>assets/img/96fe8606-924a-43e3-85d9-5ea432192aa5images (2).jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>lnc175hur9</Fingerprint>
+      <Integrity>r94r7+pD7r/7+Nfsofs3bPFQWfXTFnikJBcPTgbTv0g=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\96fe8606-924a-43e3-85d9-5ea432192aa5images (2).jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\a48662b7-b526-4c49-8833-bed6ff5b58cablack_f.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>MultiShop</SourceId>
@@ -642,8 +678,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>lhudcp1qrl</Fingerprint>
-      <Integrity>mfunIgcBMk8CGeDaO72f7/4YF58WuTJ4OD/7+UClRFI=</Integrity>
+      <Fingerprint>xvczq90a8p</Fingerprint>
+      <Integrity>/clNZ6bHhrRP4pM38A1GQ/+2d5Al7sXW4+fQHE3tcZ8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\Custom.js'))</OriginalItemSpec>

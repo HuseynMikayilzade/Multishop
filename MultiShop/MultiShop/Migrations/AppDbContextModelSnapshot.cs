@@ -243,7 +243,7 @@ namespace MultiShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ColorId")
+                    b.Property<int?>("ColorId")
                         .HasColumnType("int");
 
                     b.Property<int>("Count")
@@ -258,7 +258,7 @@ namespace MultiShop.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SizeId")
+                    b.Property<int?>("SizeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -360,6 +360,7 @@ namespace MultiShop.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AppUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CouponId")
@@ -370,10 +371,6 @@ namespace MultiShop.Migrations
 
                     b.Property<DateTime?>("UsedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -444,6 +441,9 @@ namespace MultiShop.Migrations
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal?>("CouponDiscount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Received")
                         .HasColumnType("datetime2");
@@ -736,9 +736,7 @@ namespace MultiShop.Migrations
 
                     b.HasOne("MultiShop.Models.Color", "Color")
                         .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ColorId");
 
                     b.HasOne("MultiShop.Models.Order", "Order")
                         .WithMany("BasketItems")
@@ -752,9 +750,7 @@ namespace MultiShop.Migrations
 
                     b.HasOne("MultiShop.Models.Size", "Size")
                         .WithMany()
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SizeId");
 
                     b.Navigation("AppUser");
 
@@ -770,8 +766,10 @@ namespace MultiShop.Migrations
             modelBuilder.Entity("MultiShop.Models.CouponUsage", b =>
                 {
                     b.HasOne("MultiShop.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .WithMany("CouponUsages")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MultiShop.Models.Coupon", "Coupon")
                         .WithMany("CouponUsages")
@@ -877,6 +875,8 @@ namespace MultiShop.Migrations
             modelBuilder.Entity("MultiShop.Models.AppUser", b =>
                 {
                     b.Navigation("BasketItems");
+
+                    b.Navigation("CouponUsages");
 
                     b.Navigation("Orders");
 

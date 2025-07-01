@@ -41,6 +41,7 @@ namespace MultiShop.Controllers
                         Image = item.Product.Images.FirstOrDefault()?.Url,
                         Description = item.Product.Description,
                         Discount = item.Product.Discount,
+                        SalePrice = item.Product.Price - item.Product.Discount,
                         Price = item.Product.Price,
                     });
 
@@ -64,6 +65,8 @@ namespace MultiShop.Controllers
                                 {
                                     Id = product.Id,
                                     Name = product.Name,
+                                    SalePrice = product.Price-product.Discount,
+                                    Price = product.Price,
                                     Image = product.Images.FirstOrDefault().Url,
                                 });
                             }
@@ -74,7 +77,7 @@ namespace MultiShop.Controllers
             return View(itemvm);
         }
 
-        public async Task<IActionResult> AddWishList(int id)
+        public async Task<IActionResult> AddWishList(int id , string? returnUrl)
         {
             if (id <= 0) throw new BadRequestException(" Bad Request :(");
             Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -95,7 +98,7 @@ namespace MultiShop.Controllers
                 {
                     AppUserId = appuser.Id,
                     ProductId = product.Id,
-                    Price = product.Price,
+                    Price = product.Price-product.Discount,
                     Description = product.Description,
                     Discount = product.Discount,
                     isLiked = true
@@ -139,8 +142,47 @@ namespace MultiShop.Controllers
                 string json = JsonConvert.SerializeObject(wish);
                 Response.Cookies.Append("Wish", json);
             }
-            return RedirectToAction(nameof(Index), "Home");
+            if (returnUrl != null)
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index), "Home");
+            }
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) throw new BadRequestException(" Bad Request :(");
+            Product product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if (product == null) throw new NotFoundException("Product Not Found :(");
 
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser appuser = await _userManager.Users.Include(u => u.WishListItems.Where(bi => bi.isLiked == true))
+                    .FirstOrDefaultAsync(u => u.Id == User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (appuser == null) throw new NotFoundException("User Not Found :(");
+                WishListItem wishListItem = appuser.WishListItems.FirstOrDefault(b => b.ProductId == product.Id);
+                if (wishListItem == null) throw new NotFoundException("An Unexpected Error Occurred :(");
+                appuser.WishListItems.Remove(wishListItem);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                List<WishCookieItemVm> wishes = JsonConvert.DeserializeObject<List<WishCookieItemVm>>(Request.Cookies["Wish"]);
+                if (wishes == null) throw new NotFoundException("An Unexpected Error Occurred :(");
+
+                WishCookieItemVm existed = wishes.FirstOrDefault(b => b.Id == id);
+                if (existed == null) throw new NotFoundException("An Unexpected Error Occurred :(");
+                wishes.Remove(existed);
+                string json = JsonConvert.SerializeObject(wishes);
+                Response.Cookies.Append("Wish", json);
+
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

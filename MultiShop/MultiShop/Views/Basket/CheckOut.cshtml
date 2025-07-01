@@ -14,22 +14,27 @@
                         <div class="col-md-6 form-group">
                             <label asp-for="Name">Name</label>
                             <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"> </span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="Surname">Surname</label>
                             <input asp-for="Surname" class="form-control" />
+                            <span asp-validation-for="Surname" class="text-danger"> </span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="Email">E-mail</label>
                             <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"> </span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="Phone">Mobile No</label>
                             <input asp-for="Phone" class="form-control" placeholder="+994 70 456 789" />
+                            <span asp-validation-for="Phone" class="text-danger"> </span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="Adress">Address Line</label>
                             <input asp-for="Adress" class="form-control" placeholder="123 Street" />
+                            <span asp-validation-for="Adress" class="text-danger"> </span>
                         </div>                      
                     </div>
                 </div>
@@ -58,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="text-end">
-                                    <div class="fw-semibold text-muted">$@(item.Price *item.Count) </div>
+                                    <div class="fw-semibold text-muted">$@((item.Product.Price -item.Product.Discount) *item.Count) </div>
                                     <div class="text-muted" style="font-size: 14px;">Count: @item.Count</div>
                                 </div>
                             </div>
@@ -97,6 +102,10 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" asp-for="CouponDiscount" />
+        <input type="hidden" asp-for="SubTotal" />
+        <input type="hidden" asp-for="Coupon" />
+
     </form>
 </div>
 <!-- Checkout End -->

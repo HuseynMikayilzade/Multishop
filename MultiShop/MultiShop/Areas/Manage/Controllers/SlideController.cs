@@ -25,7 +25,7 @@ namespace MultiShop.Areas.Manage.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Slide> slides = await _context.Slides.ToListAsync();
+            List<Slide> slides = await _context.Slides.OrderByDescending(x => x.Id).ToListAsync();
             PaginationVm<Slide> paginationvm = new PaginationVm<Slide>
             {
                 Items = slides,

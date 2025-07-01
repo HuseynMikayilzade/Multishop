@@ -72,7 +72,13 @@ namespace MultiShop.Controllers
                 }
                 return View(vm); 
             }
-
+            LoginVm loginvm = new LoginVm
+            {
+                Password = vm.Password,
+                UserNameOrEmail = vm.Username,
+                Isremembered = false
+            };
+            await Login(loginvm);
             return RedirectToAction(nameof(Index), "Home");
         }
 
@@ -137,8 +143,8 @@ namespace MultiShop.Controllers
                                 Count = cookieItem.Count,
                                 AppUserId = User.Id,
                                 Price = (await _context.Products.FirstOrDefaultAsync(p => p.Id == cookieItem.Id))?.Price ?? 0,
-                                ColorId = cookieItem.ColorId,
-                                SizeId = cookieItem.SizeId
+                                ColorId = cookieItem.ColorId > 0 ? cookieItem.ColorId : null ,
+                                SizeId = cookieItem.SizeId > 0 ? cookieItem?.SizeId : null,
                             };
                             User.BasketItems.Add(newItem);
                         }

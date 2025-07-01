@@ -29,8 +29,7 @@ namespace MultiShop.Areas.Manage.Controllers
             double totalpage = Math.Ceiling(count / 5);
 
 
-            List<Category> categories = await _context.Categories.Skip((page-1)*5).Take(5).ToListAsync();
-            //List<Category> categories = await _context.Categories.ToListAsync();
+            List<Category> categories = await _context.Categories.OrderByDescending(x => x.Id).Skip((page-1)*5).Take(5).ToListAsync();
             if(categories==null) return NotFound();
 
             PaginationVm<Category> vm = new PaginationVm<Category>

@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MultiShop.DAL;
+using MultiShop.Interfaces;
 using MultiShop.Models;
 using MultiShop.Services;
 using MultiShop.Utilities.Exceptions;
+using MultiShop.Utilities.Extentions;
 using MultiShop.ViewModels;
 using Newtonsoft.Json;
 using System.Security.Claims;
@@ -17,12 +19,14 @@ namespace MultiShop.Controllers
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly CouponService _couponService;
+        private readonly IEmailService _emailService;
 
-        public BasketController(AppDbContext context, UserManager<AppUser> userManager, CouponService couponService)
+        public BasketController(AppDbContext context, UserManager<AppUser> userManager, CouponService couponService, IEmailService emailService)
         {
             _context = context;
             _userManager = userManager;
             _couponService = couponService;
+            _emailService = emailService;
         }
         public async Task<IActionResult> Index(string? coupon)
         {
@@ -43,10 +47,11 @@ namespace MultiShop.Controllers
                     itemvm.Add(new BasketItemVm
                     {
                         Id = item.ProductId,
-                        Price = item.Product.Price,
+                        SalePrice = item.Product.Price - item.Product.Discount,
                         Count = item.Count,
                         Name = item.Product.Name,
-                        SubTotal = item.Count * item.Product.Price,
+                        SubTotal = item.Count * (item.Product.Price - item.Product.Discount),
+                        Price = item.Product.Price,
                         Image = item.Product.Images.FirstOrDefault()?.Url,
                         Color = item.Color?.Name ?? "N/A",
                         Size = item.Size?.Name ?? "N/A"
@@ -70,14 +75,15 @@ namespace MultiShop.Controllers
 
                             if (cookies != null)
                             {
-
+                                var saleprice = product.Price - product.Discount;
                                 itemvm.Add(new BasketItemVm
                                 {
                                     Id = product.Id,
                                     Name = product.Name,
-                                    Price = product.Price,
+                                    SalePrice = saleprice,
                                     Count = item.Count,
-                                    SubTotal = item.Count * product.Price,
+                                    SubTotal = item.Count * saleprice,
+                                    Price = product.Price,
                                     Image = product.Images.FirstOrDefault().Url,
                                     Color = color?.Name ?? "N/A",
                                     Size = size?.Name ?? "N/A"
@@ -110,7 +116,7 @@ namespace MultiShop.Controllers
                         AppUserId = appuser.Id,
                         ProductId = product.Id,
                         Count = 1,
-                        Price = product.Price,
+                        Price = product.Price - product.Discount,
                     };
                     appuser.BasketItems.Add(basketItem);
                 }
@@ -144,8 +150,6 @@ namespace MultiShop.Controllers
                         {
                             Id = id,
                             Count = 1,
-                            ColorId = existed.ColorId,
-                            SizeId = existed.SizeId,
                         };
                         cart.Add(basketCookieItemVm);
                     }
@@ -254,7 +258,7 @@ namespace MultiShop.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> CheckOut()
+        public async Task<IActionResult> CheckOut(string? coupon)
         {
             AppUser appUser = await _userManager.Users
                 .Include(u => u.BasketItems.Where(bi => bi.OrderId == null))
@@ -267,7 +271,16 @@ namespace MultiShop.Controllers
             if (appUser == null) throw new NotFoundException("User Not Found :(");
             if (!appUser.BasketItems.Any())
                 return RedirectToAction("Error", "Basket", new { errormessage = "Basket is empty", returnUrl = Url.Action("Index", "Basket") });
-            var SubTotal = appUser.BasketItems.Sum(x => x.Price * x.Count);
+
+            decimal discount = 0;
+            if (!string.IsNullOrEmpty(coupon))
+            {
+                var result = await _couponService.ApplyCouponAsync(coupon, appUser.Id);
+                if (result.IsValid) discount = result.Value;
+
+            }
+
+            var SubTotal = appUser.BasketItems.Sum(x => (x.Product.Price - x.Product.Discount) * x.Count);
             OrderVm ordervm = new OrderVm
             {
                 BasketItems = appUser.BasketItems,
@@ -275,8 +288,9 @@ namespace MultiShop.Controllers
                 Surname = appUser.Surname,
                 Email = appUser.Email,
                 SubTotal = SubTotal,
-                CouponDiscount = 0,//deyisecem
-                Total = SubTotal - 0 //deyis
+                CouponDiscount = discount,
+                Total = SubTotal - discount,
+                Coupon = coupon,
             };
             return View(ordervm);
         }
@@ -298,13 +312,7 @@ namespace MultiShop.Controllers
                 return View(orderVm);
             }
 
-            decimal total = 0;
-            foreach (var item in appUser.BasketItems)
-            {
-                item.Price = item.Product.Price;
-                total += item.Price * item.Count;
-            }
-
+            orderVm.Total = orderVm.SubTotal - orderVm.CouponDiscount;
             var order = new Order
             {
                 Address = orderVm.Adress,
@@ -312,11 +320,18 @@ namespace MultiShop.Controllers
                 Status = null,
                 Received = DateTime.Now,
                 BasketItems = appUser.BasketItems,
-                TotalPrice = total,
+                TotalPrice = orderVm.Total,
+                CouponDiscount = orderVm.CouponDiscount,
             };
-
+            if (!string.IsNullOrEmpty(orderVm.Coupon))
+            {
+                await _couponService.AppliedCouponUsageAsync(orderVm.Coupon, appUser.Id);
+            }
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
+
+            string body = EmailCreator.EmailBody(order);
+            await _emailService.SendEmailAsync(appUser.Email, "Order confirmation", body, true);
             return RedirectToAction(nameof(Success), new { returnUrl = Url.Action("Index", "Basket") });
 
         }
@@ -380,10 +395,10 @@ namespace MultiShop.Controllers
                     itemvm.Add(new BasketItemVm
                     {
                         Id = item.ProductId,
-                        Price = item.Product.Price,
+                        Price = item.Product.Price - item.Product.Discount,
                         Count = item.Count,
                         Name = item.Product.Name,
-                        SubTotal = item.Count * item.Product.Price,
+                        SubTotal = item.Count * (item.Product.Price - item.Product.Discount),
                         Image = item.Product.Images.FirstOrDefault()?.Url
                     });
                 }
@@ -403,9 +418,9 @@ namespace MultiShop.Controllers
                         {
                             Id = product.Id,
                             Name = product.Name,
-                            Price = product.Price,
+                            Price = product.Price - product.Discount,
                             Count = item.Count,
-                            SubTotal = item.Count * product.Price,
+                            SubTotal = item.Count * (product.Price - product.Discount),
                             Image = product.Images.FirstOrDefault()?.Url
                         });
                     }

@@ -23,7 +23,7 @@ namespace MultiShop.Areas.Manage.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<SpecialProduct> specialProducts = await _context.SpecialProducts.ToListAsync();
+            List<SpecialProduct> specialProducts = await _context.SpecialProducts.OrderByDescending(x => x.Id).ToListAsync();
             PaginationVm<SpecialProduct> paginationvm = new PaginationVm<SpecialProduct>
             {
                 Items = specialProducts,

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MultiShop.DAL;
+using MultiShop.Interfaces;
 using MultiShop.Models;
 using MultiShop.Services;
 using System.Reflection;
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 builder.Services.AddScoped<LayoutService>();
 builder.Services.AddScoped<CouponService>();
+builder.Services.AddScoped<IEmailService,EmailService>();
 builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 {
     opt.User.RequireUniqueEmail = true;

@@ -40,9 +40,12 @@
                                     </div>
                                 </div>
                             </td>
-
-
-                            <td class="align-middle">@item.Price $</td>
+                            <td class="align-middle">
+                                <div class="ml-4 align-items-center" style="line-height: 1.2;">
+                                    @item.SalePrice $
+                                    <div class="text-muted" style="font-size: 15px;"><del>@(item.Price != item.SalePrice ? item.Price: "" )</del></div>
+                                </div>
+                            </td>
                             <td class="align-middle">
                                 <div class="input-group quantity-wrapper mx-auto" style="width: 150px;">
                                     <div class="input-group-btn">
@@ -53,7 +56,7 @@
                                     <input type="text"
                                            class="form-control form-control-sm bg-secondary border-0 text-center quantity-value"
                                            value="@item.Count"
-                                           data-price="@item.Price" />
+                                           data-price="@item.SalePrice" />
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary quantity-increase">
                                             <i class="fa fa-plus"></i>
@@ -63,7 +66,7 @@
                             </td>
 
                             <td class="align-middle total-price" data-id="@item.Id">
-                                @(item.Price * item.Count) $
+                                @(item.SalePrice * item.Count) $
                             </td>
                             <td class="align-middle">
                                 <button class="btn btn-sm btn-danger btn-delete" data-id="@item.Id">
@@ -81,6 +84,7 @@
             <form id="couponForm" class="mb-30">
                 <div class="input-group">
                     <input id="couponInput" type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                    <input type="hidden" id="appliedCouponCode" />
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-warning">Apply Coupon</button>
                     </div>
@@ -97,7 +101,7 @@
                     </div>
                     <div id="couponDiscountRow" class="d-flex justify-content-between mb-2" style="display: none;">
                         <span class="text-muted fs-6">Coupon Discount</span>
-                        <span class="text-danger fw-semibold" id="couponDiscountValue"></span>
+                        <span class="text-danger fw-semibold" id="couponDiscountValue">$0.00</span>
                     </div>
 
                 </div>
@@ -109,7 +113,7 @@
                     <i class="fa fa-credit-card me-2"></i>Proceed To Checkout
                 </button>
             </div>
-            <!-- Creative Login Prompt Modal -->
+            <!-- Login Prompt Modal -->
             <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-md">
                     <div class="modal-content shadow-lg border-0 rounded-4">
@@ -152,10 +156,25 @@
                     </div>
                 </div>
             </div>
-
+            <!-- empty basket modal-->
+            <div class="modal fade" id="emptyBasketModal" tabindex="-1" aria-labelledby="emptyBasketModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content shadow border-0 rounded-4">
+                        <div class="modal-header bg-danger text-white border-0 rounded-top-4">
+                            <h5 class="modal-title" id="emptyBasketModalLabel">
+                                <i class="fa fa-shopping-basket me-2"></i>Boş səbət
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center py-4">
+                            <p class="fs-5 text-dark">Səbətiniz hazırda boşdur. Kupon tətbiq etmək üçün zəhmət olmasa məhsul əlavə edin.</p>
+                            <button class="btn btn-danger px-4 fw-semibold rounded-pill mt-3" data-bs-dismiss="modal">Bağla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
 </div>
 <!-- Cart End -->
-
